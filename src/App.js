@@ -1,24 +1,37 @@
-import logo from './logo.svg';
+import React from 'react'
 import './App.css';
 
-function App() {
+import Header from './components/Header'
+import About from './components/About'
+import Contact from './components/Contact'
+import Portfolio from './components/Portfolio'
+
+import Particles from 'react-particles-js';
+import particleConfig from './components/config/Particle-config';
+import Footer from './components/Footer'
+
+
+
+const App = () => {
+
   return (
+
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+      <div>
+
+        <Header/>
+        <About/>
+        <Portfolio/>
+        <Contact/>
+        <Footer/>
+
+        <Particles params={particleConfig} className="particles"/>
+
+      </div>
+
     </div>
+
   );
 }
 
