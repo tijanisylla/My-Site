@@ -5,6 +5,14 @@ const nodemailer = require("nodemailer");
 const cors = require("cors");
 require("dotenv").config();
 
+
+
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, console.log(`Server is running on port : ${PORT}`))
+
+
+
+
 // middleware
 app.use(express.json());
 app.use(cors());
@@ -56,11 +64,7 @@ if(process.env.NODE_ENV === 'production'){
 }
 
 
-const PORT = 3001;
-app.listen(process.env.PORT || 3001)
 
-
- console.log(`Server is running on port: ${PORT}`);
 
 //Step 1
 
