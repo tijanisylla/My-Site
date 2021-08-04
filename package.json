@@ -52,8 +52,8 @@
     "webfontloader": "^1.6.28"
   },
   "scripts": {
-    "start:": "nodemon ./server/server.js",
-    "start:react": "react-scripts start",
+    "start": "node ./server/server.js",
+    
     "server": "node ./server/server.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
