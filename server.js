@@ -6,9 +6,7 @@ const cors = require("cors");
 require("dotenv").config();
 const { google} = require('googleapis')
 const path = require('path')
-const morgan = require('morgan');
 
-compression = require("compression")
 
 const CLIENT_ID  = '312223310860-n7vfpbo4h6ghu6tk2m4mmn4nc9u1n911.apps.googleusercontent.com' 
 const CLIENT_SECRET  = 'OkN-p94KwIxsR9q24LWPvKk9' 
@@ -18,7 +16,7 @@ const REFRESH_TOKEN = '1//04KTQKVqUYqifCgYIARAAGAQSNwF-L9IrHkGKASus9Tv4HT5Ij7yT6
 
 
 
-const PORT =  process.env.PORT || 8080
+const PORT = process.env.PORT || 8080;
 app.listen(PORT, console.log(`Server is running on port : ${PORT}`))
 
 
@@ -77,23 +75,14 @@ app.post("/send", function (req, res) {
 
 
 //======Deploying settings=====
-const dev = app.get('env') !== 'procution'
-
-if(!dev){
-
-  app.disable('x-powered-by')
-  app.use(compression())
-  app.use(morgan('common'))
-  
-  app.use(express.static(path.resolve(__dirname, 'build')))
-  app.get('*', (req,res) => {
-    res.sendFile(path.resolve(__dirname, 'build', 'index.html'))
+if(process.env.NODE_ENV === 'production'){
+  app.use(express.static('build'))
+  app.get('*', (req, res) => {
+    req.sendFile(path.resolve(__dirname, 'build', 'index.html'))
   })
 }
 
-if(dev){
-  app.use(morgan('dev'))
-}
+
 
 
 //Step 1
