@@ -134,13 +134,13 @@ const Contact = () => {
               Send Message</button>}
             
              
-              {/* {sendin && 
+              {sendin && 
             <div className="Loading">
            <img src={Imgreact} className="react-img" alt={Imgreact}/>
 
         <h3>Send message...</h3>
       
-      </div>} */}
+      </div>}
 
       {/* {sendin && <div> {openModal()} </div>} */}
            
