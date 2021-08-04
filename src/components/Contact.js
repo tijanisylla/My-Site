@@ -142,7 +142,7 @@ const Contact = () => {
       
       </div>}
 
-      {sendin && <div> {openModal()} </div>}
+      {/* {sendin && <div> {openModal()} </div>} */}
            
               
            
@@ -151,7 +151,7 @@ const Contact = () => {
         </form>
 
         {/* <button onClick={openModal}>Click me</button> */}
-           <Modal
+           {/* <Modal
 
               isOpen={modalIsOpen}
               style={customStyles}
@@ -170,7 +170,7 @@ const Contact = () => {
               <h6>I will respond to you as quickly as possible!</h6>
               </div>
 
-           </Modal> 
+           </Modal>  */}
 
        
 
