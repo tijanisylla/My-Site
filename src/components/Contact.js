@@ -27,7 +27,7 @@ const Contact = () => {
 
 
     // ===========REACT_APP_API and refresh the server if not it will undefined  ;) ============//
-    const response = await fetch('http://localhost:8080/send', {
+    const response = await fetch(`${process.env.REACT_APP_API}`, {
       method: "POST",
       headers: {
         "Content-type": "application/json"
@@ -54,7 +54,7 @@ const Contact = () => {
 
     });
   };
-  // console.log('SECRET:',`${process.env.REACT_APP_API}`)
+  console.log('SECRET:',`${process.env.REACT_APP_API}`)
   function handleStateChange(e) {
     setMailerState((prevState) => ({
       ...prevState,
