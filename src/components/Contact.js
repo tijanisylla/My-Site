@@ -8,13 +8,13 @@ import Imgreact from '../logos/react.svg'
 
 const Contact = () => {
  
-  const [modalIsOpen,
-    setIsOpen] = useState(false);
+  const [modalIsOpen,setIsOpen] = useState(false);
+    
 
   const [mailerState,
     setMailerState] = useState({name: "", email: "", message: ""});
-  const [sendin,
-    setSending] = useState(false);
+  const [sendin,setSending] = useState(false);
+    
 
   const submitEmail = async(e) => {
 
