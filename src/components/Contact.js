@@ -7,12 +7,19 @@ import {FaTimes} from "react-icons/fa"
 import Imgreact from '../logos/react.svg'
 
 const Contact = () => {
- 
+ let REACT_APP_API ;
+ if("localhost:3000" === window.location.host){
+     REACT_APP_API = 'http://localhost:8080/send' 
+ }
+ if("tijanisylla.herokuapp.com" === window.location.host){
+     REACT_APP_API = 'https://tijanisylla.herokuapp.com/send' 
+ }
+
   const [modalIsOpen,setIsOpen] = useState(false);
     
 
-  const [mailerState,
-    setMailerState] = useState({name: "", email: "", message: ""});
+  const [mailerState, setMailerState] = useState({name: "", email: "", message: ""});
+   
   const [sendin,setSending] = useState(false);
     
 
@@ -27,7 +34,7 @@ const Contact = () => {
 
 
     // ===========REACT_APP_API and refresh the server if not it will undefined  ;) ============//
-    const response = await fetch(`${process.env.REACT_APP_API}`, {
+    const response = await fetch(`${REACT_APP_API}`, {
       method: "POST",
       headers: {
         "Content-type": "application/json"
@@ -54,7 +61,8 @@ const Contact = () => {
 
     });
   };
-  console.log('SECRET:',`${process.env.REACT_APP_API}`)
+  console.log('SECRET:',`${REACT_APP_API}`)
+
   function handleStateChange(e) {
     setMailerState((prevState) => ({
       ...prevState,

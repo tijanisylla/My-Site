@@ -76,7 +76,7 @@ app.post("/send", function (req, res) {
 });
 
 
-//======Deploying settings=====
+//======Deploying settings=====//
 if(process.env.NODE_ENV === 'production'){
   app.use(express.static('build'))
   app.get('*', (req, res) => {
