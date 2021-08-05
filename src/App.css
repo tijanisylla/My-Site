@@ -991,7 +991,7 @@ li::before {content: "•"; color: red;
     }
 
     .about-text {
-        width: 90%;
+        width: 100%;
     }
 
     .about-text h1 {

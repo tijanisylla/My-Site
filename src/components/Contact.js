@@ -125,7 +125,7 @@ const Contact = () => {
 
             <input
               type="text"
-              placeholder="Exemple@gamil.com"
+              placeholder="Exemple@gmail.com"
               onChange={handleStateChange}
               name="email"
               value={mailerState.email}
