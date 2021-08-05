@@ -6,6 +6,7 @@ const cors = require("cors");
 require("dotenv").config();
 const { google} = require('googleapis')
 const path = require('path')
+bodyParser = require('body-parser')
 
 
 const CLIENT_ID  = '312223310860-n7vfpbo4h6ghu6tk2m4mmn4nc9u1n911.apps.googleusercontent.com' 
@@ -14,7 +15,8 @@ const REDIRECT_URI = 'https://developers.google.com/oauthplayground'
 const REFRESH_TOKEN = '1//04KTQKVqUYqifCgYIARAAGAQSNwF-L9IrHkGKASus9Tv4HT5Ij7yT6mCba2xCSbtv4kpGDJ66UT8a36javxdk4NfY4pEizLJs_6g'
 
 
-
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, console.log(`Server is running on port : ${PORT}`))
@@ -75,12 +77,12 @@ app.post("/send", function (req, res) {
 
 
 //======Deploying settings=====
-// if(process.env.NODE_ENV === 'production'){
-//   app.use(express.static('build'))
-//   app.get('*', (req, res) => {
-//     req.sendFile(path.resolve(__dirname, 'build', 'index.html'))
-//   })
-// }
+if(process.env.NODE_ENV === 'production'){
+  app.use(express.static('build'))
+  app.get('*', (req, res) => {
+    req.sendFile(path.resolve(__dirname, 'build', 'index.html'))
+  })
+}
 
 // app.use(express.static(path.join(__dirname, 'build')));
 
