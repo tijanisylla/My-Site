@@ -50,7 +50,7 @@ const Contact = () => {
       setIsOpen(false)
       
       if (resData.status === "success") {
-        //  alert('message sent!')
+          alert('message sent!')
 
       } else if (resData.status === "fail") {
         alert("Message failed to send");

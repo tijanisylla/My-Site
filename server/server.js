@@ -54,6 +54,7 @@ transporter.verify((err, success) => {
 });
 
 app.post("/send", function (req, res) {
+  console.log(` STARTING TO SEND : ${JSON.stringify(req.body)}`)
  let mailOptions = {
    from: `${req.body.mailerState.email}`,
    to: process.env.MY_EMAIL,
@@ -63,6 +64,7 @@ app.post("/send", function (req, res) {
 
  transporter.sendMail(mailOptions, function (err, data) {
    if (err) {
+     console.log(`FAILED TO SEND MAIL ${JSON.stringify(err)}`)
      res.json({
        status: "fail",
      });
