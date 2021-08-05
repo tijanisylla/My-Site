@@ -25,7 +25,7 @@ const Service = () => {
 
       <div className="service-heading">
         <h1>Portfolio</h1>
-        <p>You can slide or Click the Arrows <FaArrowLeft color={'#ffff'}/>  <FaArrowRight color={'#ffff'}/> to see the rest of the projetcs</p>
+        <p>You can slide or Click the Arrows <FaArrowLeft color={'#ffff'}/>  <FaArrowRight color={'#ffff'}/> to see the rest of the projects</p>
         </div>
         
         <Slider {...Settings}>

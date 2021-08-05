@@ -48,7 +48,7 @@ const Header = () => {
                 'Hello 👋' , 4000,
                 'Welcome to my Portfolio ! 🙂 ', 4000,
                 'My name is Tijani Sylla', 4000,
-                'Im a Fullstack-Developer 💻 ' , 4000,
+                'Im a Full-Stack Developer 💻 ' , 4000,
                 'Based in Chicago 🏙️ ',4000,
                 'learn more about me down below 👇' , 4000,
               
