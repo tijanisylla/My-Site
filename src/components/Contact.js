@@ -5,6 +5,7 @@ import Modal from 'react-modal';
 
 import {FaTimes} from "react-icons/fa"
 import Imgreact from '../logos/react.svg'
+import { BackgroundColor } from "chalk";
 
 const Contact = () => {
  let REACT_APP_API ;
@@ -50,7 +51,7 @@ const Contact = () => {
       setIsOpen(false)
       
       if (resData.status === "success") {
-          alert('message sent!')
+          // alert('message sent!')
 
       } else if (resData.status === "fail") {
         alert("Message failed to send");
@@ -97,8 +98,8 @@ const Contact = () => {
       right: 'auto',
       bottom: 'auto',
       marginRight: '-50%',
-      transform: 'translate(-50%, -50%)'
-      
+      transform: 'translate(-50%, -50%)',
+      border : '2px solid black'
     }
   };
  
@@ -146,11 +147,11 @@ const Contact = () => {
             <div className="Loading">
            <img src={Imgreact} className="react-img" alt={Imgreact}/>
 
-        <h3>Send message...</h3>
+        <h5>Send message...</h5>
       
       </div>}
 
-      {/* {sendin && <div> {openModal()} </div>} */}
+      {sendin && <div> {openModal()} </div>}
            
               
            
@@ -158,8 +159,8 @@ const Contact = () => {
           </fieldset>
         </form>
 
-        {/* <button onClick={openModal}>Click me</button> */}
-           {/* <Modal
+   
+           <Modal
 
               isOpen={modalIsOpen}
               style={customStyles}
@@ -169,16 +170,20 @@ const Contact = () => {
               onClick={closeModal}>
                
              
-             <FaTimes onClick={closeModal }
+             <FaTimes 
+             style={{color : 'red',
+                     float : 'right'}}
+             onClick={closeModal }
 
 
               >close</FaTimes>
               <div>
-              <h3>Message Sent !</h3>
-              <h6>I will respond to you as quickly as possible!</h6>
+              <h3 style={{textAlign : 'center'}}>Message Sent ! ✅ </h3>
+              <p style={{textAlign : 'center'}}>I will respond to you as quickly as possible!</p>
               </div>
 
-           </Modal>  */}
+           </Modal> 
+          
 
        
 

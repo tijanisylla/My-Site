@@ -1,4 +1,4 @@
-import 'react-circular-progressbar/dist/styles.css';
+
 import {FaGithub, FaLinkedin, FaFacebook} from 'react-icons/fa'
 import React from 'react';
 import image from '../images/sylla2.png'
@@ -48,7 +48,7 @@ const About = () => {
            
       
 
-          <p>
+          <p className='content-css'>
             My name is Tijani Sylla I was born and raised in Mauritania, a country with a
             small population on the west coast of Africa, and hold dual citizenship with
             Portugal. Growing up in a multilingual environment inspired my first passions,
