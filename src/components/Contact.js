@@ -5,16 +5,24 @@ import Modal from 'react-modal';
 
 import {FaTimes} from "react-icons/fa"
 import Imgreact from '../logos/react.svg'
+import { BackgroundColor } from "chalk";
 
 const Contact = () => {
- 
-  const [modalIsOpen,
-    setIsOpen] = useState(false);
+ let REACT_APP_API ;
+ if("localhost:3000" === window.location.host){
+     REACT_APP_API = 'http://localhost:8080/send' 
+ }
+ if("tijanisylla.herokuapp.com" === window.location.host){
+     REACT_APP_API = 'https://tijanisylla.herokuapp.com/send' 
+ }
 
-  const [mailerState,
-    setMailerState] = useState({name: "", email: "", message: ""});
-  const [sendin,
-    setSending] = useState(false);
+  const [modalIsOpen,setIsOpen] = useState(false);
+    
+
+  const [mailerState, setMailerState] = useState({name: "", email: "", message: ""});
+   
+  const [sendin,setSending] = useState(false);
+    
 
   const submitEmail = async(e) => {
 
@@ -27,7 +35,7 @@ const Contact = () => {
 
 
     // ===========REACT_APP_API and refresh the server if not it will undefined  ;) ============//
-    const response = await fetch(`${process.env.REACT_APP_API}`, {
+    const response = await fetch(`${REACT_APP_API}`, {
       method: "POST",
       headers: {
         "Content-type": "application/json"
@@ -43,7 +51,7 @@ const Contact = () => {
       setIsOpen(false)
       
       if (resData.status === "success") {
-        //  alert('message sent!')
+          // alert('message sent!')
 
       } else if (resData.status === "fail") {
         alert("Message failed to send");
@@ -54,7 +62,8 @@ const Contact = () => {
 
     });
   };
-  console.log('SECRET:',`${process.env.REACT_APP_API}`)
+  console.log('SECRET:',`${REACT_APP_API}`)
+
   function handleStateChange(e) {
     setMailerState((prevState) => ({
       ...prevState,
@@ -89,8 +98,8 @@ const Contact = () => {
       right: 'auto',
       bottom: 'auto',
       marginRight: '-50%',
-      transform: 'translate(-50%, -50%)'
-      
+      transform: 'translate(-50%, -50%)',
+      border : '2px solid black'
     }
   };
  
@@ -116,7 +125,7 @@ const Contact = () => {
 
             <input
               type="text"
-              placeholder="Exemple@gamil.com"
+              placeholder="Example@gmail.com"
               onChange={handleStateChange}
               name="email"
               value={mailerState.email}
@@ -138,7 +147,7 @@ const Contact = () => {
             <div className="Loading">
            <img src={Imgreact} className="react-img" alt={Imgreact}/>
 
-        <h3>Send message...</h3>
+        <h5>Send message...</h5>
       
       </div>}
 
@@ -150,7 +159,7 @@ const Contact = () => {
           </fieldset>
         </form>
 
-        {/* <button onClick={openModal}>Click me</button> */}
+   
            <Modal
 
               isOpen={modalIsOpen}
@@ -161,16 +170,20 @@ const Contact = () => {
               onClick={closeModal}>
                
              
-             <FaTimes onClick={closeModal }
+             <FaTimes 
+             style={{color : 'red',
+                     float : 'right'}}
+             onClick={closeModal }
 
 
               >close</FaTimes>
               <div>
-              <h3>Message Sent !</h3>
-              <h6>I will respond to you as quickly as possible!</h6>
+              <h3 style={{textAlign : 'center'}}>Message Sent ! ✅ </h3>
+              <p style={{textAlign : 'center'}}>I will respond to you as quickly as possible!</p>
               </div>
 
            </Modal> 
+          
 
        
 

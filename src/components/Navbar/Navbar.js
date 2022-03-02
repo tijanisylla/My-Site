@@ -9,7 +9,7 @@ const Navbar = () => {
      
        
 <p className="logo">
- Tijani Sylla
+ Software Egineer
 </p>
 
       

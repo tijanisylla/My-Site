@@ -4,13 +4,29 @@ const app = express()
 const nodemailer = require("nodemailer");
 const cors = require("cors");
 require("dotenv").config();
+const { google} = require('googleapis')
+const path = require('path')
+bodyParser = require('body-parser')
 
 
+const CLIENT_ID  = '312223310860-n7vfpbo4h6ghu6tk2m4mmn4nc9u1n911.apps.googleusercontent.com' 
+const CLIENT_SECRET  = 'OkN-p94KwIxsR9q24LWPvKk9' 
+const REDIRECT_URI = 'https://developers.google.com/oauthplayground'
+const REFRESH_TOKEN = '1//04KTQKVqUYqifCgYIARAAGAQSNwF-L9IrHkGKASus9Tv4HT5Ij7yT6mCba2xCSbtv4kpGDJ66UT8a36javxdk4NfY4pEizLJs_6g'
+
+
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, console.log(`Server is running on port : ${PORT}`))
 
 
+const oAuth2Client = new google.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI)
+oAuth2Client.setCredentials({refresh_token :REFRESH_TOKEN})
+    
+    
+const accessToken =  oAuth2Client.getAccessToken()  
 
 
 // middleware
@@ -20,9 +36,14 @@ app.use(cors());
 let transporter = nodemailer.createTransport({
  service: "gmail",
  auth: {
-  
+   
+  type : 'oauth2',
    user: process.env.MY_EMAIL,
    pass: process.env.MY_PASS,
+   clientId : CLIENT_ID,
+   clientSecret : CLIENT_SECRET,
+   refreshToken : REFRESH_TOKEN,
+   accessToken : accessToken
    
  },
 });
@@ -33,6 +54,7 @@ transporter.verify((err, success) => {
 });
 
 app.post("/send", function (req, res) {
+  console.log(` STARTING TO SEND : ${JSON.stringify(req.body)}`)
  let mailOptions = {
    from: `${req.body.mailerState.email}`,
    to: process.env.MY_EMAIL,
@@ -42,6 +64,8 @@ app.post("/send", function (req, res) {
 
  transporter.sendMail(mailOptions, function (err, data) {
    if (err) {
+     console.log(`FAILED TO SEND MAIL ${JSON.stringify(err)}`)
+     console.error(err)
      res.json({
        status: "fail",
      });
@@ -55,7 +79,7 @@ app.post("/send", function (req, res) {
 });
 
 
-//======Deploying settings=====
+//======Deploying settings=====//
 if(process.env.NODE_ENV === 'production'){
   app.use(express.static('build'))
   app.get('*', (req, res) => {
@@ -63,7 +87,12 @@ if(process.env.NODE_ENV === 'production'){
   })
 }
 
+// app.use(express.static(path.join(__dirname, 'build')));
 
+
+// app.get('/*', (req, res) => {
+//   res.sendFile(path.join(__dirname, 'build', 'index.html'));
+// });
 
 
 //Step 1

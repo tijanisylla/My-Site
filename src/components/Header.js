@@ -3,9 +3,9 @@ import Resume from '../images/Resume5.pdf'
 import Cert from '../images/uic.pdf'
 import Navbar from './Navbar/Navbar'
 import {Link} from 'react-scroll'
-
 import { Spring, animated} from 'react-spring/renderprops'
-
+import { FaGithub} from 'react-icons/fa'
+import Typical from 'react-typical'
 
 const Header = () => {
 
@@ -38,10 +38,29 @@ const Header = () => {
 
         {/*======================================== Wrapper ======================================== */}
         <div className="wrapper">
+         { {Typical} ? <h3> 
+       <Typical 
+        style={{color : 'white'}}
+        loop={1}
+        wrapper="span"
+        steps={[
           
-  
-          
-            <ul className="dynamic-text">
+                'Hello 👋' , 4000,
+                'Welcome to my Portfolio ! 🙂 ', 4000,
+                'My name is Tijani Sylla', 4000,
+                'Im a Full-Stack Developer 💻 ' , 4000,
+                'Based in Chicago 🏙️ ',4000,
+                'learn more about me down below 👇' , 4000,
+              
+               
+              
+              
+              
+              ]}
+            
+      />
+            </h3> : ''}
+            {/* <ul className="dynamic-text">
           
             <li>
                 <span id="span">Full-Stack...</span>
@@ -53,8 +72,10 @@ const Header = () => {
               <li>
                 <span>Translator</span>
               </li>
-            </ul>
-          </div>
+                </ul>*/}
+             
+
+          </div> 
         
 
         <p className="details">
@@ -69,7 +90,7 @@ const Header = () => {
           </Link>
           
           <a href={Resume} download className="btn-2">
-            Download CV
+            Resume
           </a>
           
           <a href={Cert} download className="btn-2">
